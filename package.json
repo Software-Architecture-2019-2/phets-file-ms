@@ -2,7 +2,7 @@
   "name": "phets-file-manager-ms",
   "version": "1.0.0",
   "description": "Microservice to manage files. Specially images and video",
-  "main": "dist/index.js",
+  "main": "dist/app.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
