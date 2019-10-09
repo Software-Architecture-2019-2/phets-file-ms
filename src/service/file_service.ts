@@ -1,7 +1,7 @@
 import fs from "fs";
-import { searchFile } from "../util";
+import { searchFile } from "../util/utilities";
 
-export default class FileService {
+export class FileService {
     // Returns fullpath if found
     public static getFile(id: string): string {
         return searchFile(id);
@@ -18,5 +18,4 @@ export default class FileService {
         }
         return false;
     }
-
 }
