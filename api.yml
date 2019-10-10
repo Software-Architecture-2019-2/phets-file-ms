@@ -1,0 +1,108 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice to process and store files
+  description: TypeScript + Filesystem
+  license:
+    name: Software Architecture, 2019-II
+host: localhost:4007
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+  - multipart/form-data
+produces:
+  - application/json
+paths:
+  /file:
+    post:
+      summary: Creates a new file
+      operationId: createFile
+      parameters:
+        - name: file
+          in: formData
+          required: true
+          description: File Object
+          type: file
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/File'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /file/{id}:
+    get:
+      summary: Returns a file with the given id
+      operationId: getFile
+      parameters:
+        - name: id
+          in: path
+          description: The id of the file to be returned
+          required: true
+          type: string
+      produces:
+        - multipart/form-data
+      responses:
+        '200':
+          description: A file
+          schema:
+            type: file
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a file with the given id
+      operationId: deleteFile
+      parameters:
+        - name: id
+          in: path
+          description: The id of the file to be deleted
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/File'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+
+  # File
+  File:
+    type: object
+    properties:
+      file_id:
+        type: string
+
+# Errors
+  ErrorModel:
+    type: object
+    required:
+      - message
+      - code
+    properties:
+      message:
+        type: string
+      code:
+        type: number
