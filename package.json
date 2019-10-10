@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Microservice to manage files. Specially images and video",
   "main": "dist/app.js",
+  "repository": "https://github.com/Software-Architecture-2019-2/phets-file-ms",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
@@ -14,8 +15,8 @@
     "microservice",
     "media"
   ],
-  "author": "phets",
-  "license": "ISC",
+  "author": "phets team",
+  "license": "MIT",
   "dependencies": {
     "@types/multer": "^1.3.10",
     "@types/uuid": "^3.4.5",
