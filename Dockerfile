@@ -10,7 +10,6 @@ RUN npm install --no-cache
 COPY . /phets-file-ms/
 RUN npm run build
 
-ARG UPLOADS_DIR
-RUN mkdir ${UPLOADS_DIR}
+RUN mkdir -p /var/local/uploads
 
 CMD [ "npm", "run", "start" ]

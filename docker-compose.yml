@@ -4,8 +4,6 @@ services:
     container_name: phets-file-ms
     build:
       context: .
-      args:
-        UPLOADS_DIR: /var/local/uploads
     volumes:
       - phets-files-volume:/var/local/uploads
     environment:
