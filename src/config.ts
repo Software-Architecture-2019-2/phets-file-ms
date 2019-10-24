@@ -3,7 +3,7 @@ import multer from "multer";
 import uuid = require("uuid");
 import { getFileExtension } from "./util/utilities";
 
-export const PORT = process.env.PORT || 5000;
+export const PORT = process.env.PORT || 4007;
 
 export const UPLOAD_DIR = process.env.UPLOADS_PATH || "./uploads";
 

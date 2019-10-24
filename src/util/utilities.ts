@@ -18,7 +18,7 @@ export const getFilename = (filename: string) => {
  */
 export const searchFile = (searched: string): string | null => {
     const fileFolder = searched.substr(0, 3);
-    const folder = path.join(__dirname, "/../../", UPLOAD_DIR, fileFolder);
+    const folder = path.join(UPLOAD_DIR, fileFolder);
     try {
         const files = fs.readdirSync(folder);
         const filename = files.find((f) => f.startsWith(searched));
