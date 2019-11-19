@@ -4,6 +4,11 @@ import { FileService } from "../service/file_service";
 import { FileType } from "../types/types";
 import { errorResponse, getFilename } from "../util/utilities";
 
+const _USERS_MS_PORT = process.env.USERS_MS_PORT || 4006;
+const _USERS_MS_HOST = process.env.USERS_MS_HOST || "172.17.0.1";
+
+const USERS_MS_SESSION = `http://${_USERS_MS_HOST}:${_USERS_MS_PORT}/session/validate`;
+
 export class FileResource {
   public static setupResources(app: express.Application) {
     this.app = app;
@@ -39,7 +44,7 @@ export class FileResource {
 
         const getToken = async () => {
           try {
-            return await axios.get("http://172.17.0.1:4006/session/validate", {
+            return await axios.get(USERS_MS_SESSION, {
               data: { token },
               headers: { "Content-Type": "application/json" }
             });
@@ -64,8 +69,8 @@ export class FileResource {
         };
         valid();
       } else {
-        response.status(400);
-        response.send(errorResponse(400, "Authentication error"));
+        response.status(403);
+        response.send(errorResponse(403, "Authentication error"));
       }
     });
   }
@@ -80,7 +85,7 @@ export class FileResource {
 
         const getToken = async () => {
           try {
-            return await axios.get("http://172.17.0.1:4006/session/validate", {
+            return await axios.get(USERS_MS_SESSION, {
               data: { token },
               headers: { "Content-Type": "application/json" }
             });
@@ -108,8 +113,8 @@ export class FileResource {
         };
         valid();
       } else {
-        response.status(400);
-        response.send(errorResponse(400, "Authentication error"));
+        response.status(403);
+        response.send(errorResponse(403, "Authentication error"));
       }
     });
   }

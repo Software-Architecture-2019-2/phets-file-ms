@@ -2,12 +2,13 @@ version: '3.4'
 services:
   phets-file-ms:
     container_name: phets-file-ms
-    build:
-      context: .
+    build: .
     volumes:
       - phets-files-volume:/var/local/uploads
     environment:
       PORT: '4007'
+      USERS_MS_PORT: '4006'
+      USERS_MS_HOST: '172.17.0.1'
       UPLOADS_PATH: '/var/local/uploads'
     ports:
       - '4007:4007'
